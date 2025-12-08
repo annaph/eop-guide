@@ -7,8 +7,10 @@ ThisBuild / version := "1.0.0"
 ThisBuild / scalaVersion := "3.3.6"
 
 ThisBuild / scalacOptions ++= Seq(
-  "-java-output-version", "17",
-  "-encoding", "utf8",
+  "-java-output-version",
+  "17",
+  "-encoding",
+  "utf8",
   "-deprecation",
   "-feature",
   "-unchecked",
@@ -21,7 +23,7 @@ ThisBuild / scalacOptions ++= Seq(
   "-Ykind-projector"
 )
 
-ThisBuild / fork := true
+ThisBuild / fork               := true
 ThisBuild / run / connectInput := true
 
 val zioVersion = "2.1.22"
@@ -33,3 +35,13 @@ ThisBuild / libraryDependencies ++= Seq(
 lazy val root = project
   .in(file("."))
   .settings(name := "eop-guide")
+  .aggregate(
+    common,
+    superpowers
+  )
+
+lazy val common = project.in(file("common"))
+
+lazy val superpowers = project
+  .in(file("superpowers"))
+  .dependsOn(common)
