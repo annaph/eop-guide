@@ -37,11 +37,16 @@ lazy val root = project
   .settings(name := "eop-guide")
   .aggregate(
     common,
-    superpowers
+    superpowers,
+    initialization
   )
 
 lazy val common = project.in(file("common"))
 
 lazy val superpowers = project
   .in(file("superpowers"))
+  .dependsOn(common)
+
+lazy val initialization = project
+  .in(file("initialization"))
   .dependsOn(common)

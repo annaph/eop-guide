@@ -2,6 +2,7 @@ package org.eop.guide.superpowers
 
 import org.eop.guide.IntOps.seconds
 import org.eop.guide.StringOps.withMagentaBackground
+import org.eop.guide.ZIOAppDebug
 import org.eop.guide.superpowers.Scenario.*
 import zio.{Duration, Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
 

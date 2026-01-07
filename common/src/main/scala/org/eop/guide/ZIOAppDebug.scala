@@ -1,4 +1,4 @@
-package org.eop.guide.superpowers
+package org.eop.guide
 
 import org.eop.guide.StringOps.{withGreenBackground, withRedBackground}
 import zio.{Console, Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
