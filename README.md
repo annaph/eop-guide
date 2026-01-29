@@ -7,5 +7,8 @@ This repository contains the code that goes with the **Effect Oriented Programmi
 
 The source code contains different modules for the following chapters:
 
-1. _Superpowers_ chapters  
+1. _Superpowers_ chapter  
    module name: **superpowers**
+
+2. _Initialization_ chapter  
+   module name: **initialization**

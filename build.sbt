@@ -26,10 +26,14 @@ ThisBuild / scalacOptions ++= Seq(
 ThisBuild / fork               := true
 ThisBuild / run / connectInput := true
 
-val zioVersion = "2.1.22"
+val zioVersion       = "2.1.22"
+val zioConfigVersion = "4.0.6"
 
 ThisBuild / libraryDependencies ++= Seq(
-  "dev.zio" %% "zio" % zioVersion
+  "dev.zio" %% "zio"                 % zioVersion,
+  "dev.zio" %% "zio-config"          % zioConfigVersion,
+  "dev.zio" %% "zio-config-typesafe" % zioConfigVersion,
+  "dev.zio" %% "zio-config-magnolia" % zioConfigVersion
 )
 
 lazy val root = project
