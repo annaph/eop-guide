@@ -33,7 +33,9 @@ ThisBuild / libraryDependencies ++= Seq(
   "dev.zio" %% "zio"                 % zioVersion,
   "dev.zio" %% "zio-config"          % zioConfigVersion,
   "dev.zio" %% "zio-config-typesafe" % zioConfigVersion,
-  "dev.zio" %% "zio-config-magnolia" % zioConfigVersion
+  "dev.zio" %% "zio-config-magnolia" % zioConfigVersion,
+  "dev.zio" %% "zio-test"            % zioVersion % Test,
+  "dev.zio" %% "zio-test-sbt"        % zioVersion % Test
 )
 
 lazy val root = project
@@ -42,7 +44,8 @@ lazy val root = project
   .aggregate(
     common,
     superpowers,
-    initialization
+    initialization,
+    testing
   )
 
 lazy val common = project.in(file("common"))
@@ -53,4 +56,8 @@ lazy val superpowers = project
 
 lazy val initialization = project
   .in(file("initialization"))
+  .dependsOn(common)
+
+lazy val testing = project
+  .in(file("testing"))
   .dependsOn(common)

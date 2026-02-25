@@ -1,7 +1,6 @@
 package org.eop.guide.initialization
 
 import org.eop.guide.ZIOAppDebug
-import org.eop.guide.initialization.App6.eatBread
 import zio.{Scope, URIO, ZIO, ZIOAppArgs, ZLayer}
 
 trait AppBase:
