@@ -8,7 +8,7 @@ ThisBuild / scalaVersion := "3.3.6"
 
 ThisBuild / scalacOptions ++= Seq(
   "-java-output-version",
-  "17",
+  "21",
   "-encoding",
   "utf8",
   "-deprecation",
@@ -20,7 +20,8 @@ ThisBuild / scalacOptions ++= Seq(
   "-indent",
   "-new-syntax",
   "-print-lines",
-  "-Ykind-projector"
+  "-Ykind-projector",
+  "-Wunused:imports"
 )
 
 ThisBuild / fork               := true
