@@ -1,6 +1,6 @@
 package org.eop.guide
 
-import zio.Duration
+import zio.{Duration, ZIO}
 
 object StringOps:
   extension (str: String)
@@ -17,5 +17,18 @@ end StringOps
 
 object IntOps:
   extension (n: Int) def seconds: Duration = Duration.fromSeconds(n)
-  end extension
 end IntOps
+
+object ZIOOps:
+  import org.eop.guide.StringOps.{withRedBackground, withGreenBackground}
+
+  extension [R, E, A](zio: ZIO[R, E, A])
+    def debugAsGreen: ZIO[R, E, A] =
+      zio.tap: a =>
+        ZIO.debug(s"$a".withGreenBackground)
+
+    def debugAsRed: ZIO[R, E, A] =
+      zio.tap: a =>
+        ZIO.debug(s"$a".withRedBackground)
+  end extension
+end ZIOOps

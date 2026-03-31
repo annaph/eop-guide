@@ -1,7 +1,7 @@
 package org.eop.guide
 
 import org.eop.guide.StringOps.{withGreenBackground, withRedBackground}
-import zio.{Console, Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
+import zio.{Scope, ZIO, ZIOAppArgs, ZIOAppDefault}
 
 trait ZIOAppDebug:
   self =>
@@ -9,19 +9,31 @@ trait ZIOAppDebug:
   def run: ZIO[ZIOAppArgs & Scope, Any, Any]
 
   def main(args: Array[String]): Unit =
-    val app = new ZIOAppDefault {
+    zioApp.main(args)
+
+  private def zioApp: ZIOAppDefault =
+    new ZIOAppDefault:
       override def run: ZIO[ZIOAppArgs & Scope, Any, Any] =
         self.run
-          .tapSome {
+          .tapSome:
             case result if !result.isInstanceOf[Unit] =>
-              Console
-                .printLine(line = s"~> Result: $result".withGreenBackground)
-          }
-          .tapSomeError {
-            case error if error.isInstanceOf[String] =>
-              Console.printLine(line = s"~> Error: '$error'".withRedBackground)
-          }
-    }
-    app.main(args)
-  end main
+              ZIO.debug:
+                s"~> Result ~> $result".withGreenBackground
+          .tapSomeError:
+            case error: String =>
+              ZIO.debug:
+                s"~> Error ~> '$error'".withRedBackground
+
+            case error: Exception =>
+              ZIO.debug:
+                s"~> Error ~> ${error.getClass.getSimpleName}: '${error.getMessage}'".withRedBackground
+          .tapDefect: cause =>
+            cause.dieOption
+              .map: deffect =>
+                ZIO.debug:
+                  s"~> Deffect ~> ${deffect.getClass.getSimpleName}: '${deffect.getMessage}'".withRedBackground
+              .getOrElse(ZIO.unit)
+      end run
+    end new
+  end zioApp
 end ZIOAppDebug

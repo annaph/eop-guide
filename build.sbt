@@ -14,7 +14,6 @@ ThisBuild / scalacOptions ++= Seq(
   "-deprecation",
   "-feature",
   "-unchecked",
-  "-Xfatal-warnings",
   "-explain",
   "-explain-types",
   "-indent",
@@ -46,7 +45,8 @@ lazy val root = project
     common,
     superpowers,
     initialization,
-    testing
+    testing,
+    failure
   )
 
 lazy val common = project.in(file("common"))
@@ -61,4 +61,8 @@ lazy val initialization = project
 
 lazy val testing = project
   .in(file("testing"))
+  .dependsOn(common)
+
+lazy val failure = project
+  .in(file("failure"))
   .dependsOn(common)

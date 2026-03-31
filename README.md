@@ -15,3 +15,6 @@ The source code contains different modules for the following chapters:
 
 3. _Testing_ chapter  
    module name: **testing**
+
+4. _Failure_ chapter   
+   module name: **failure**
