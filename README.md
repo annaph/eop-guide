@@ -18,3 +18,6 @@ The source code contains different modules for the following chapters:
 
 4. _Failure_ chapter   
    module name: **failure**
+
+5. _Composability_ chapter   
+   module name: **composability**

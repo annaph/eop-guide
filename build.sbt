@@ -46,7 +46,8 @@ lazy val root = project
     superpowers,
     initialization,
     testing,
-    failure
+    failure,
+    composability
   )
 
 lazy val common = project.in(file("common"))
@@ -65,4 +66,8 @@ lazy val testing = project
 
 lazy val failure = project
   .in(file("failure"))
+  .dependsOn(common)
+
+lazy val composability = project
+  .in(file("composability"))
   .dependsOn(common)
