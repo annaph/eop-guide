@@ -47,7 +47,8 @@ lazy val root = project
     initialization,
     testing,
     failure,
-    composability
+    composability,
+    sharedState
   )
 
 lazy val common = project.in(file("common"))
@@ -70,4 +71,8 @@ lazy val failure = project
 
 lazy val composability = project
   .in(file("composability"))
+  .dependsOn(common)
+
+lazy val sharedState = project
+  .in(file("shared-state"))
   .dependsOn(common)

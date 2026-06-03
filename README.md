@@ -21,3 +21,6 @@ The source code contains different modules for the following chapters:
 
 5. _Composability_ chapter   
    module name: **composability**
+
+6. _Shared State_ chapter   
+   module name: **share-state**
