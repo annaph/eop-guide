@@ -26,16 +26,20 @@ ThisBuild / scalacOptions ++= Seq(
 ThisBuild / fork               := true
 ThisBuild / run / connectInput := true
 
-val zioVersion       = "2.1.22"
-val zioConfigVersion = "4.0.6"
+val zioVersion           = "2.1.22"
+val zioConfigVersion     = "4.0.6"
+val zioCacheVersion      = "0.2.8"
+val zioRezilienceVersion = "0.10.5"
 
 ThisBuild / libraryDependencies ++= Seq(
-  "dev.zio" %% "zio"                 % zioVersion,
-  "dev.zio" %% "zio-config"          % zioConfigVersion,
-  "dev.zio" %% "zio-config-typesafe" % zioConfigVersion,
-  "dev.zio" %% "zio-config-magnolia" % zioConfigVersion,
-  "dev.zio" %% "zio-test"            % zioVersion % Test,
-  "dev.zio" %% "zio-test-sbt"        % zioVersion % Test
+  "dev.zio"   %% "zio"                 % zioVersion,
+  "dev.zio"   %% "zio-config"          % zioConfigVersion,
+  "dev.zio"   %% "zio-config-typesafe" % zioConfigVersion,
+  "dev.zio"   %% "zio-config-magnolia" % zioConfigVersion,
+  "dev.zio"   %% "zio-cache"           % zioCacheVersion,
+  "nl.vroste" %% "rezilience"          % zioRezilienceVersion,
+  "dev.zio"   %% "zio-test"            % zioVersion % Test,
+  "dev.zio"   %% "zio-test-sbt"        % zioVersion % Test
 )
 
 lazy val root = project
@@ -48,7 +52,8 @@ lazy val root = project
     testing,
     failure,
     composability,
-    sharedState
+    sharedState,
+    resilience
   )
 
 lazy val common = project.in(file("common"))
@@ -75,4 +80,8 @@ lazy val composability = project
 
 lazy val sharedState = project
   .in(file("shared-state"))
+  .dependsOn(common)
+
+lazy val resilience = project
+  .in(file("resilience"))
   .dependsOn(common)

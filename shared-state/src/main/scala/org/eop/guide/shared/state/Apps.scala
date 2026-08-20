@@ -38,7 +38,7 @@ object App1 extends ZIOAppDebug with AppBase:
       result <- counter.get
     yield s"""
              | counter == num => ${(result == num).toString.toUpperCase}
-    """.stripMargin
+      """.stripMargin
   end run
 
   private def increment(counter: Ref[Int]): UIO[Unit] =
@@ -80,7 +80,7 @@ object App3 extends ZIOAppDebug with AppBase:
     yield s"""
              | counter: $result
              | attempts: ${attempts.get()}
-    """.stripMargin
+      """.stripMargin
   end run
 
   private def increment(counter: Ref.Synchronized[Int]): UIO[Unit] =
