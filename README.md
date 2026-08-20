@@ -24,3 +24,6 @@ The source code contains different modules for the following chapters:
 
 6. _Shared State_ chapter   
    module name: **share-state**
+
+7. _Resilience_ chapter   
+   module name: **resilience**
